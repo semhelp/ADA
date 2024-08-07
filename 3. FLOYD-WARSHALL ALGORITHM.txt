@@ -1,0 +1,132 @@
+FLOYD-WARSHALL ALGORITHM
+
+#include<stdio.h>
+
+void main()
+{
+    int i, j, k, cost[10][10], n;
+
+    // Input the number of vertices
+    printf("Enter the no of vertices:");
+    scanf("%d", &n);
+
+    // Input the cost matrix
+    printf("Enter the cost matrix:\n");
+    for(i = 1; i <= n; i++)
+    {
+        for(j = 1; j <= n; j++)
+        {
+            scanf("%d", &cost[i][j]);
+        }
+    }
+
+    // Print the initial cost matrix
+    printf("Edge with cost\n");
+    for(i = 1; i <= n; i++)
+    {
+        for(j = 1; j <= n; j++)
+        {
+            printf("Edge %d to %d cost= %d\n", i, j, cost[i][j]);
+        }
+    }
+
+    // Applying Floyd-Warshall algorithm
+    for(k = 1; k <= n; k++)
+    {
+        for(i = 1; i <= n; i++)
+        {
+            for(j = 1; j <= n; j++)
+            {
+                if(cost[i][k] + cost[k][j] < cost[i][j])
+                {
+                    cost[i][j] = cost[i][k] + cost[k][j];
+                }
+            }
+        }
+    }
+
+    // Print the shortest path matrix
+    printf("Edge with shortest path\n");
+    for(i = 1; i <= n; i++)
+    {
+        for(j = 1; j <= n; j++)
+        {
+            printf("Edge %d to %d cost=%d\n", i, j, cost[i][j]);
+        }
+    }
+}
+
+
+OUTPUT:
+
+
+Enter the no of vertices:4
+Enter the cost matrix:
+0 13 0 -2
+0 0 0 0
+6 4 0 0
+0 0 5 0
+Edge with cost
+Edge 1 to 1 cost= 0
+Edge 1 to 2 cost= 13
+Edge 1 to 3 cost= 0
+Edge 1 to 4 cost= -2
+Edge 2 to 1 cost= 0
+Edge 2 to 2 cost= 0
+Edge 2 to 3 cost= 0
+Edge 2 to 4 cost= 0
+Edge 3 to 1 cost= 6
+Edge 3 to 2 cost= 4
+Edge 3 to 3 cost= 0
+Edge 3 to 4 cost= 0
+Edge 4 to 1 cost= 0
+Edge 4 to 2 cost= 0
+Edge 4 to 3 cost= 5
+Edge 4 to 4 cost= 0
+Edge with shortest path
+Edge 1 to 1 cost=-2
+Edge 1 to 2 cost=-2
+Edge 1 to 3 cost=-2
+Edge 1 to 4 cost=-4
+Edge 2 to 1 cost=-2
+Edge 2 to 2 cost=-2
+Edge 2 to 3 cost=-2
+Edge 2 to 4 cost=-4
+Edge 3 to 1 cost=0
+Edge 3 to 2 cost=0
+Edge 3 to 3 cost=0
+Edge 3 to 4 cost=-2
+Edge 4 to 1 cost=-2
+Edge 4 to 2 cost=-2
+Edge 4 to 3 cost=-2
+Edge 4 to 4 cost=-4
+
+
+output:
+
+Enter the no of vertices:3
+Enter the cost matrix:
+0 3 999
+999 0 1
+1 999 0
+Edge with cost
+Edge 1 to 1 cost= 0
+Edge 1 to 2 cost= 3
+Edge 1 to 3 cost= 999
+Edge 2 to 1 cost= 999
+Edge 2 to 2 cost= 0
+Edge 2 to 3 cost= 1
+Edge 3 to 1 cost= 1
+Edge 3 to 2 cost= 999
+Edge 3 to 3 cost= 0
+Edge with shortest path
+Edge 1 to 1 cost=0
+Edge 1 to 2 cost=3
+Edge 1 to 3 cost=4
+Edge 2 to 1 cost=2
+Edge 2 to 2 cost=0
+Edge 2 to 3 cost=1
+Edge 3 to 1 cost=1
+Edge 3 to 2 cost=4
+Edge 3 to 3 cost=0
+

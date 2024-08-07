@@ -1,0 +1,69 @@
+TRANSITIVE CLOSURE OF A GRAPH
+
+#include<stdio.h>
+void main()
+{
+    int i,j,k,adjmat[10][10],n,t[10][10];
+    printf("Enter the no of vertices:");
+    scanf("%d", &n);
+    printf("Enter the adjacent matrix:\n");
+    for(i = 1; i <= n; i++)
+    {
+        for(j = 1; j <= n; j++)
+        {
+            scanf("%d", &adjmat[i][j]);
+            t[i][j]=adjmat[i][j];
+        }
+    }
+    printf("Adjacent matrix is\n");
+    for(i=1;i<=n;i++)
+    {
+        for(j = 1; j <= n; j++)
+        {
+            printf("%d\t",adjmat[i][j]);
+        }
+        printf("\n");
+    }
+    for(k = 1; k <= n; k++)
+    {
+        for(i = 1; i <= n; i++)
+        {
+            for(j = 1; j <= n; j++)
+            {
+                if(t[i][j]==1||(t[i][k]&&t[k][j]))
+                {
+                    t[i][j]=1;
+                }
+            }
+        }
+    }
+    printf("Transitive closure of a graph is\n");
+    for(i = 1; i <= n; i++)
+    {
+        for(j = 1; j <= n; j++)
+        {
+            printf("%d\t",t[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+
+OUTPUT:
+
+Enter the no of vertices:3
+Enter the adjacent matrix:
+1 0 1
+1 1 0
+0 1 1
+Adjacent matrix is
+1	0	1	
+1	1	0	
+0	1	1	
+Transitive closure of a graph is
+1	1	1	
+1	1	1	
+1	1	1	
+
+
+

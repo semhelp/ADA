@@ -1,0 +1,43 @@
+INSERTION SORT:-
+
+
+#include<stdio.h>
+void insertionsort(int a[10],int n)
+{
+    int key,i,j;
+    for(i=1;i<n;i++)
+    {
+        key=a[i];
+        for(j=i-1;j>=0&&key<a[j];j--)
+        {
+            a[j+1]=a[j];
+        }
+        a[j+1]=key;
+    }
+    printf("Array elements after sorting\n");
+    for(i=0;i<n;i++)
+    printf("%d\t",a[i]);
+}
+void main()
+{
+    int n,i,a[10];
+    printf("Enter the size of an array:");
+    scanf("%d",&n);
+    printf("Enter the elements of array\n");
+    for(i=0;i<n;i++)
+    scanf("%d",&a[i]);
+     insertionsort(a,n);
+}
+
+OUTPUT:-
+
+Enter the size of an array:6
+Enter the elements of array
+3
+4
+1
+2
+5
+6
+Array elements after sorting
+1	2	3	4	5	6	
